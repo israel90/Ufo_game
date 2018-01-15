@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 
 public class PickUpRedController : MonoBehaviour {
@@ -15,8 +15,8 @@ public class PickUpRedController : MonoBehaviour {
         movY = getRandomDirection();
 
         //Derecha
-        //movX = 1;
-        //movY = 1;
+        //movX = -2;
+        //movY = -2;
 
         
         Debug.Log("X: " + movX + " Y:"+ movY);
@@ -24,12 +24,12 @@ public class PickUpRedController : MonoBehaviour {
 
     // Update is called once per frame
     //FixedUpdate o Update
-    void FixedUpdate() {
+    void Update() {
         //GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(movX, movY) * 3);
         GetComponent<Rigidbody2D>().velocity = new Vector2(movX, movY);
         Vector3 vector = this.transform.position;
         lastPosition = vector;
-        this.transform.Rotate(new Vector3(0, 0, 45) * Time.deltaTime);
+        this.transform.Rotate(new Vector3(0, 0, -45) * Time.deltaTime);
 
     }
 
@@ -37,26 +37,22 @@ public class PickUpRedController : MonoBehaviour {
 
 
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
+    void OnTriggerEnter2D(Collider2D other){
 
-        if (other.gameObject.tag == "WallX")
-        {
+        if (other.gameObject.tag == "WallX"){
  
             Debug.Log("toca pared X");
-            Debug.Log(this.GetComponent<Rigidbody2D>().GetRelativeVector(lastPosition));
             movY = movY * -1;
 
         }
-        else if (other.gameObject.tag == "WallY")
-        {
+        else if (other.gameObject.tag == "WallY"){
             Debug.Log("toca pared Y");
-            Debug.Log(this.GetComponent<Rigidbody2D>().GetRelativeVector(lastPosition));
             movX = -movX * 1;
  
         }
         Debug.Log("El nuevo modX es: " + movX);
         Debug.Log("El nuevo modY es: " + movY);
+        GetComponent<Rigidbody2D>().velocity = new Vector2(movX*400, movY*400);
         //movX = movX == 1 ? -1 : 1;
         //Debug.Log("toca pared");
         //other.isTrigger = false;
@@ -64,8 +60,8 @@ public class PickUpRedController : MonoBehaviour {
     }
 
     private float getRandomDirection(){
-
-        return Random.Range(-1, 1);
+        
+        return Random.Range(-1, 1) * 2;
     }
 
     

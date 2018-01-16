@@ -50,8 +50,8 @@ public class PickUpRedController : MonoBehaviour {
             movX = -movX * 1;
  
         }
-        Debug.Log("El nuevo modX es: " + movX);
-        Debug.Log("El nuevo modY es: " + movY);
+        //Debug.Log("El nuevo modX es: " + movX);
+        //Debug.Log("El nuevo modY es: " + movY);
         GetComponent<Rigidbody2D>().velocity = new Vector2(movX*400, movY*400);
         //movX = movX == 1 ? -1 : 1;
         //Debug.Log("toca pared");
@@ -60,8 +60,12 @@ public class PickUpRedController : MonoBehaviour {
     }
 
     private float getRandomDirection(){
+        float random = 0;
+        while (random == 0) {
+            random = Random.Range(-1, 2);
+        }
         
-        return Random.Range(-1, 1) * 2;
+        return random *2;
     }
 
     

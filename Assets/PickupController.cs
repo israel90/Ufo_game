@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PickupController : MonoBehaviour {
 
+    public GameObject PickUp;
 
 	
 	// Update is called once per frame
